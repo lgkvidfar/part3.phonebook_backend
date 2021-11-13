@@ -1,6 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
+const mongoose = require('mongoose')
 const app = express()
 
 app.use(express.static('build'))
@@ -8,6 +9,27 @@ app.use(cors())
 app.use(express.json())
 morgan.token('body', req =>  JSON.stringify(req.body))
 app.use(morgan(':method :url :response-time ms :body'))
+
+const url =
+  `mongodb+srv://fullstack:nioka20@cluster0.nkjni.mongodb.net/phonebookApp?retryWrites=true&w=majority`
+
+mongoose.connect(url)
+
+const personSchema = new mongoose.Schema({
+  name: String,
+  number: String,
+})
+
+personSchema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
+  }
+})
+
+const Person = mongoose.model('Person', personSchema)
+
 
 let persons = [
     {
@@ -41,7 +63,9 @@ let persons = [
   })
   
   app.get('/persons', (request, response) => {
-    response.json(persons)
+    Person.find({}).then(returned => {
+      response.json(returned)
+    })
   })
 
   app.get('/persons/:id', (request, response) => {
