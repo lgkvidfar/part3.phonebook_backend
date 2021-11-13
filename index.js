@@ -3,6 +3,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const app = express()
 
+app.use(express.static('build'))
 app.use(cors())
 app.use(express.json())
 morgan.token('body', req =>  JSON.stringify(req.body))
@@ -30,10 +31,6 @@ let persons = [
       "id": 4
     }
   ]
-
-  app.get('/', (request, response) => {
-    response.send('<h1>Hello There!</h1>')
-  })
 
   app.get('/info', (request, response) => {
     response.send(`
