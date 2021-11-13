@@ -58,7 +58,7 @@ app.use(morgan(':method :url :response-time ms :body'))
     .catch(error => next(error))
     })
 
-  app.post('/persons', (request, response) => {
+  app.post('/persons', (request, response,next) => {
     const body = request.body
 
     if (body.name === undefined || body.number === undefined) {
@@ -75,12 +75,30 @@ app.use(morgan(':method :url :response-time ms :body'))
   person.save().then(savedPerson => {
     response.json(savedPerson)
   })
+  .catch(error => next(error))
 })
 
-  app.delete('/persons/:id', (request, response) => {
-    const id = Number(request.params.id)
-    persons = persons.filter(person => person.id !== id)
-    response.status(204).end()
+  app.put('/persons/:id', (request, response, next) => {
+  const body = request.body
+
+  const person = {
+    name: body.name,
+    number: body.number,
+  }
+
+  Person.findByIdAndUpdate(request.params.id, person, { new: true })
+    .then(updatedPerson => {
+      response.json(updatedPerson)
+    })
+    .catch(error => next(error))
+})
+
+  app.delete('/persons/:id', (request, response,next) => {
+    Person.findByIdAndRemove(request.params.id)
+    .then(result => {
+      response.status(204).end()
+    })
+    .catch(error => next(error))
   })
 
   const unknownEndpoint = (request, response) => {
