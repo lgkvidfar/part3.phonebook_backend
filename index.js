@@ -30,36 +30,14 @@ personSchema.set('toJSON', {
 
 const Person = mongoose.model('Person', personSchema)
 
-
-let persons = [
-    {
-      "name": "Arto Hellas",
-      "number": "040-123456",
-      "id": 1
-    },
-    {
-      "name": "Ada Lovelace",
-      "number": "39-44-5323523",
-      "id": 2
-    },
-    {
-      "name": "Dan Abramov",
-      "number": "12-43-234345",
-      "id": 3
-    },
-    {
-      "name": "Mary Poppendieck",
-      "number": "39-23-6423122",
-      "id": 4
-    }
-  ]
-
   app.get('/info', (request, response) => {
-    response.send(`
-    <h2> the phonebok has ${persons.length} entries </h2>
+    Person.find({}).then(returned => {
+      response.send(`
+    <h2> the phonebok has ${returned.length} entries </h2>
     <br> 
     <h3>${Date()} </h3>
     `)
+    })
   })
   
   app.get('/persons', (request, response) => {
