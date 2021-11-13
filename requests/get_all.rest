@@ -1,0 +1,5 @@
+GET http://localhost:3001/persons/
+
+###
+
+GET http://localhost:3001/persons/:id
