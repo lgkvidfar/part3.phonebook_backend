@@ -1,4 +1,4 @@
-POST http://localhost:3001/persons/
+POST https://gentle-coast-48583.herokuapp.com/persons
 Content-Type: application/json
 
 {

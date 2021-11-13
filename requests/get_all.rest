@@ -1,5 +1,5 @@
-GET http://localhost:3001/persons/
+GET https://gentle-coast-48583.herokuapp.com/persons
 
 ###
 
-GET http://localhost:3001/persons/:id
+GET https://gentle-coast-48583.herokuapp.com/persons/618f9f3d51bad702dcd56488
