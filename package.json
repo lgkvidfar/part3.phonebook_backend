@@ -7,6 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "dev": "nodemon index.js",
+    "lintindexfix": "eslint index.js --fix",
+    "lintindex": "eslint index.js",
     "deploy": "git push heroku main"
   },
   "author": "Lukas Vidfar",
@@ -20,6 +22,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "eslint": "^8.2.0",
     "nodemon": "^2.0.15"
   }
 }
