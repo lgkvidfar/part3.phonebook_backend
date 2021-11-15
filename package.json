@@ -8,7 +8,10 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "lintindexfix": "eslint index.js --fix",
+    "lintmongofix": "eslint mongo.js --fix",
+    "lintpersonfix": "eslint person.js --fix",
     "lintindex": "eslint index.js",
+    "lint": "eslint .",
     "deploy": "git push heroku main"
   },
   "author": "Lukas Vidfar",
