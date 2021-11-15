@@ -12,7 +12,8 @@
     "lintpersonfix": "eslint person.js --fix",
     "lintindex": "eslint index.js",
     "lint": "eslint .",
-    "deploy": "git push heroku main"
+    "hdeploy": "git push heroku main",
+    "ghdeploy": "git push github main"
   },
   "author": "Lukas Vidfar",
   "license": "ISC",
