@@ -13,7 +13,8 @@
     "lintindex": "eslint index.js",
     "lint": "eslint .",
     "hdeploy": "git push heroku main",
-    "ghdeploy": "git push github main"
+    "ghdeploy": "git push github main",
+    "alldeploy":"git push github main && git push heroku main"
   },
   "author": "Lukas Vidfar",
   "license": "ISC",
