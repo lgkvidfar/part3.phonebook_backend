@@ -18,10 +18,9 @@ app.use(express.static('build'))
 app.use(express.json())
 app.use(requestLogger)
 app.use(cors())
+
 morgan.token('body', req =>  JSON.stringify(req.body))
 app.use(morgan(':method :url :response-time ms :body'))
-
-
 
   app.get('/info', (request, response) => {
     Person.find({}).then(returned => {
@@ -108,7 +107,7 @@ app.use(morgan(':method :url :response-time ms :body'))
     if (error.name === 'CastError') {
       return response.status(400).send({ error: 'malformatted id' })
     } else if(error.name ==='ValidationError') {
-      return response.status(400).json({ error: error.message })
+      return response.status(400).send({ error: error.message })
     }
   
     next(error)
